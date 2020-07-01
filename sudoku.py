@@ -50,9 +50,9 @@ class Sudoku:
             cd = self.emptyCoords[index]
             for v in range(1, 10):
                 pu = not (self.prevUsed(cd, v))
-                vr = not (self.validRow(cd, v))
-                vc = not (self.validCol(cd, v))
-                vsm = not (self.validSubMatrix(cd, v))
+                vr = self.validRow(cd, v)
+                vc = self.validCol(cd, v)
+                vsm = self.validSubMatrix(cd, v)
                 if pu and vr and vc and vsm:
                     self.board[cd[0], cd[1]] = v
                     tmp = set()
@@ -65,7 +65,6 @@ class Sudoku:
                     self.tries[cd] = set()
                     index = index - 1
                     break
-        print()
         print("Sudoku board completed!")
         print()
 
