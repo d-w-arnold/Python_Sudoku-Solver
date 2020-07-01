@@ -47,6 +47,8 @@ class Sudoku:
     def solve(self):
         index = 0
         while index < len(self.emptyCoords):
+            if index < 0:
+                index = 0
             cd = self.emptyCoords[index]
             for v in range(1, 10):
                 pu = not (self.prevUsed(cd, v))
@@ -122,8 +124,8 @@ class Sudoku:
 
     def getSubMatrixSetHelper(self, coord, row, col):
         tmp = set()
-        for i in range(row - 1, row - 1 - 3):
-            for j in range(col - 1, col - 1 - 3):
+        for i in range(row - 3, row):
+            for j in range(col - 3, col):
                 if coord[0] == i and coord[1] == j:
                     continue
                 tmp.add(self.board[i, j])
